@@ -3,8 +3,12 @@ const UserCheck = require("../middlewares/user.check");
 
 class UserController {
   async createUser(req, res) {
-    await UserService.createUser(req.body);
-    res.redirect("/");
+    const checkUser = UserCheck.checkCreateUserData(req.body);
+
+    if (!checkUser) return res.redirect("/");
+
+    const newUser = await UserService.createUser(req.body);
+    res.json(newUser);
   }
 
   async getUsers(req, res) {
@@ -25,13 +29,16 @@ class UserController {
       return res.redirect("/");
     }
 
-    await UserService.updateUser(req.params.id, newUserData);
-    res.redirect("/");
+    const updatedUser = await UserService.updateUser(
+      req.params.id,
+      newUserData
+    );
+    res.json(updatedUser);
   }
 
   async deleteUser(req, res) {
     await UserService.deleteUser(req.params.id);
-    res.redirect("/");
+    res.json("User deleted successfully");
   }
 }
 

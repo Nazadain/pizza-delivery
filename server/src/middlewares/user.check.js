@@ -1,5 +1,15 @@
 class UserCheck {
-  checkCreateUserData(user) {}
+  checkCreateUserData(user) {
+    if (!user.name || !user.password || !user.fName || !user.phone) {
+      console.log("Wrong user data!");
+      return false;
+    }
+    const checkUser = this.checkUserData(user);
+
+    if (!checkUser) return false;
+
+    return true;
+  }
 
   checkUpdateUserData(oldData, newData) {
     const data = this.mergeData(oldData, newData);
@@ -8,7 +18,6 @@ class UserCheck {
       console.log("No data for replace!");
       return false;
     }
-
     const checkUser = this.checkUserData(data);
 
     if (!checkUser) return false;
