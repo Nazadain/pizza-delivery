@@ -1,8 +1,19 @@
 const UserService = require("../services/user.service");
+const sha256 = require("js-sha256");
+const uuid = require("uuid");
 
 class UserController {
   async registration(req, res) {
     try {
+      const { login, password } = req.body;
+      const id = uuid.v4();
+      const candidate = await UserService.getUsers(login);
+      if (candidate) {
+        return res.status(400).json({ message: "User already exists" });
+      }
+      const hashPassword = sha256(password);
+      const newUser = await UserService.createUser(id, hashPassword, req.body);
+      res.json(newUser);
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Registration error" });
@@ -27,6 +38,11 @@ class UserController {
 
   async getUsers(req, res) {
     try {
+      const { login } = req.query;
+      if (login) {
+        const users = await UserService.getUsers(login);
+        return res.json(users);
+      }
       const users = await UserService.getUsers();
       res.json(users);
     } catch (e) {

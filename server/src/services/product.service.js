@@ -9,8 +9,16 @@ class ProductService {
     return newProduct.rows[0];
   }
 
-  async getProducts() {
+  async getAllProducts() {
     const products = await db.query(`SELECT * FROM products`);
+    return products.rows;
+  }
+
+  async getProductsByType(typeId) {
+    const products = await db.query(
+      `SELECT * FROM products WHERE type_id = $1`,
+      [typeId]
+    );
     return products.rows;
   }
 

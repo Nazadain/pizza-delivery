@@ -1,5 +1,5 @@
 const ProductService = require("../services/product.service");
-const deleteFile = require("../utils/deleteFile");
+const { deleteFile } = require("../utils/file.utils");
 const uuid = require("uuid");
 const path = require("path");
 
@@ -9,7 +9,7 @@ class ProductController {
       const id = uuid.v4();
       const { img } = req.files;
       let fileName = `${uuid.v4()}.${img.mimetype.split("/")[1]}`;
-      img.mv(path.resolve(__dirname, "../../static/", fileName));
+      img.mv(path.resolve(__dirname, "../static/", fileName));
       const newProduct = await ProductService.createProduct(
         id,
         fileName,
@@ -24,7 +24,13 @@ class ProductController {
 
   async getProducts(req, res) {
     try {
-      const products = await ProductService.getProducts();
+      const { typeId } = req.query;
+      let products;
+      if (!typeId) {
+        products = await ProductService.getAllProducts();
+        return res.json(products);
+      }
+      products = await ProductService.getProductsByType(typeId);
       res.json(products);
     } catch (e) {
       console.log(e);
@@ -53,7 +59,7 @@ class ProductController {
   async deleteProduct(req, res) {
     try {
       const product = await ProductService.getProductById(req.params.id);
-      const filePath = path.resolve(__dirname, "../../static", product.img);
+      const filePath = path.resolve(__dirname, "../static", product.img);
       deleteFile(filePath);
       await ProductService.deleteProduct(req.params.id);
       res.json("Product deleted successfully");

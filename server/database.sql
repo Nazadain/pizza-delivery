@@ -1,8 +1,7 @@
 CREATE TABLE "users" (
   "id" varchar(100) PRIMARY KEY,
-  "login" varchar(30) UNIQUE NOT NULL,
-  "password" varchar(30) NOT NULL,
-  "f_name" varchar(100) NOT NULL,
+  "login" varchar(100) UNIQUE NOT NULL,
+  "password" varchar(100) NOT NULL,
   "role" varchar(100) NOT NULL
 );
 
