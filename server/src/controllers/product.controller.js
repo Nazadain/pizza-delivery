@@ -25,12 +25,11 @@ class ProductController {
   async getProducts(req, res) {
     try {
       const { typeId } = req.query;
-      let products;
       if (!typeId) {
-        products = await ProductService.getAllProducts();
+        const products = await ProductService.getProducts();
         return res.json(products);
       }
-      products = await ProductService.getProductsByType(typeId);
+      const products = await ProductService.getProducts(typeId);
       res.json(products);
     } catch (e) {
       console.log(e);
