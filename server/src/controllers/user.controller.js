@@ -1,44 +1,58 @@
 const UserService = require("../services/user.service");
-const UserCheck = require("../middlewares/user.check");
 
 class UserController {
-  async createUser(req, res) {
-    const checkUser = UserCheck.checkCreateUserData(req.body);
+  async registration(req, res) {
+    try {
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: "Registration error" });
+    }
+  }
 
-    if (!checkUser) return res.redirect("/");
+  async login(req, res) {
+    try {
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: "Login error" });
+    }
+  }
 
-    const newUser = await UserService.createUser(req.body);
-    res.json(newUser);
+  async checkAuth(req, res) {
+    try {
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: "User do not auth" });
+    }
   }
 
   async getUsers(req, res) {
-    const users = await UserService.getUsers();
-    res.json(users);
+    try {
+      const users = await UserService.getUsers();
+      res.json(users);
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: "Get user error" });
+    }
   }
 
   async getUserById(req, res) {
-    const user = await UserService.getUserById(req.params.id);
-    res.json(user);
-  }
-
-  async updateUser(req, res) {
-    const oldUserData = await UserService.getUserById(req.params.id);
-    const newUserData = UserCheck.checkUpdateUserData(oldUserData, req.body);
-
-    if (!newUserData) {
-      return res.redirect("/");
+    try {
+      const user = await UserService.getUserById(req.params.id);
+      res.json(user);
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: "Get user by ID error" });
     }
-
-    const updatedUser = await UserService.updateUser(
-      req.params.id,
-      newUserData
-    );
-    res.json(updatedUser);
   }
 
   async deleteUser(req, res) {
-    await UserService.deleteUser(req.params.id);
-    res.json("User deleted successfully");
+    try {
+      await UserService.deleteUser(req.params.id);
+      res.json("User deleted successfully");
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: "Delete user error" });
+    }
   }
 }
 
