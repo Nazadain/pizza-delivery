@@ -3,7 +3,7 @@ module.exports = function fileValidation(req, res, next) {
   const allowingExtensions = "jpeg|png|jpg|svg";
   const types = allowingExtensions.split("|");
   const fileType = img.mimetype.split("/")[1];
-  const maxSize = 1024 * 1024 * 5; //5MB
+  const maxSize = 1024 * 1024 * 10; //5MB
   if (img.size > maxSize) {
     return res.status(400).json({ message: "Wrong file size" });
   }

@@ -7,12 +7,12 @@ const orderItemRouter = require("./orderItem.router");
 const productRouter = require("./product.router");
 const ingredientRouter = require("./ingredient.router");
 
-router.use("/user", userRouter);
-router.use("/type", typeRouter);
-router.use("/status", statusRouter);
-router.use("/product", productRouter);
-router.use("/order", orderRouter);
-router.use("/orderItem", orderItemRouter);
-router.use("/ingredient", ingredientRouter);
+router.use("/users", userRouter);
+router.use("/types", typeRouter);
+router.use("/statuses", statusRouter);
+router.use("/products", productRouter);
+router.use("/orders", orderRouter);
+router.use("/orderItems", orderItemRouter);
+router.use("/ingredients", ingredientRouter);
 
 module.exports = router;
