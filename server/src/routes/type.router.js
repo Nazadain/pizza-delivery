@@ -1,11 +1,24 @@
 const router = require("express").Router();
 const TypeController = require("../controllers/type.controller");
-const checkAuth = require("../middlewares/auth.middleware");
-const checkRole = require("../middlewares/checkRole.middleware");
+const authMiddleware = require("../middlewares/auth.middleware");
+const checkRoleMiddleware = require("../middlewares/checkRole.middleware");
 
-router.post("/", [checkAuth, checkRole("admin")], TypeController.createType);
+router.post(
+  "/",
+  authMiddleware,
+  checkRoleMiddleware("ADMIN"),
+  TypeController.createType
+);
+
 router.get("/", TypeController.getTypes);
+
 router.get("/:id", TypeController.getTypeById);
-router.delete("/:id", checkRole("admin"), TypeController.deleteType);
+
+router.delete(
+  "/:id",
+  authMiddleware,
+  checkRoleMiddleware("ADMIN"),
+  TypeController.deleteType
+);
 
 module.exports = router;

@@ -34,6 +34,7 @@ class TypeController {
   async deleteType(req, res) {
     try {
       await TypeService.deleteType(req.params.id);
+      res.json({ message: "Type deleted successfully" });
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Delete type error" });
