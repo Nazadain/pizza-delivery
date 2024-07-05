@@ -1,19 +1,18 @@
 const UserService = require("../services/user.service");
 const sha256 = require("js-sha256");
 const uuid = require("uuid");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 class UserController {
   async registration(req, res) {
     try {
-      const { login, password } = req.body;
+      const { login, password, role } = req.body;
       const id = uuid.v4();
-      const candidate = await UserService.getUsers(login);
-      if (candidate) {
-        return res.status(400).json({ message: "User already exists" });
-      }
       const hashPassword = sha256(password);
       const newUser = await UserService.createUser(id, hashPassword, req.body);
-      res.json(newUser);
+      const token = generateAccessToken(login, role, id);
+      res.json({ user: newUser, token: token });
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Registration error" });
@@ -22,6 +21,17 @@ class UserController {
 
   async login(req, res) {
     try {
+      const { login, password } = req.body;
+      const user = await UserService.getUsers(login);
+      if (!user) {
+        return res.status(400).json({ message: `User ${login} not found` });
+      }
+      const hashPassword = sha256(password);
+      if (hashPassword !== user.password) {
+        return res.status(400).json({ message: "Wrong password" });
+      }
+      const token = generateAccessToken(login, user.role, user.id);
+      return res.json({ token: token });
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Login error" });
@@ -30,6 +40,8 @@ class UserController {
 
   async checkAuth(req, res) {
     try {
+      const token = generateAccessToken(user.login, user.role, user.id);
+      return res.json({ token: token });
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "User do not auth" });
@@ -71,5 +83,14 @@ class UserController {
     }
   }
 }
+
+const generateAccessToken = (login, role, id) => {
+  const payload = {
+    id,
+    login,
+    role,
+  };
+  return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "12h" });
+};
 
 module.exports = new UserController();

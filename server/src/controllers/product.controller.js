@@ -2,6 +2,7 @@ const ProductService = require("../services/product.service");
 const { deleteFile } = require("../utils/file.utils");
 const uuid = require("uuid");
 const path = require("path");
+const fs = require("fs");
 
 class ProductController {
   async createProduct(req, res) {
@@ -59,7 +60,9 @@ class ProductController {
     try {
       const product = await ProductService.getProductById(req.params.id);
       const filePath = path.resolve(__dirname, "../static", product.img);
-      deleteFile(filePath);
+      if (fs.existsSync(filePath)) {
+        deleteFile(filePath);
+      }
       await ProductService.deleteProduct(req.params.id);
       res.json("Product deleted successfully");
     } catch (e) {
