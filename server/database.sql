@@ -9,6 +9,7 @@ CREATE TABLE "products" (
   "id" varchar(100) PRIMARY KEY,
   "title" varchar(100) UNIQUE NOT NULL,
   "body" text NOT NULL,
+  "img" varchar(100),
   "price" integer NOT NULL,
   "type_id" integer NOT NULL
 );

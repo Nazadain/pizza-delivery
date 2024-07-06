@@ -1,8 +1,7 @@
 const ProductService = require("../services/product.service");
-const { deleteFile } = require("../utils/file.utils");
+const { uploadFile, deleteFile } = require("../utils/file.utils");
 const uuid = require("uuid");
 const path = require("path");
-const fs = require("fs");
 
 class ProductController {
   async createProduct(req, res) {
@@ -10,7 +9,7 @@ class ProductController {
       const id = uuid.v4();
       const { img } = req.files;
       let fileName = `${uuid.v4()}.${img.mimetype.split("/")[1]}`;
-      img.mv(path.resolve(__dirname, "../static/", fileName));
+      uploadFile(img, fileName);
       const newProduct = await ProductService.createProduct(
         id,
         fileName,
@@ -60,9 +59,7 @@ class ProductController {
     try {
       const product = await ProductService.getProductById(req.params.id);
       const filePath = path.resolve(__dirname, "../static", product.img);
-      if (fs.existsSync(filePath)) {
-        deleteFile(filePath);
-      }
+      deleteFile(filePath);
       await ProductService.deleteProduct(req.params.id);
       res.json("Product deleted successfully");
     } catch (e) {
