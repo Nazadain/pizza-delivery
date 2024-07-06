@@ -29,7 +29,12 @@ class OrderService {
     return order.rows[0];
   }
 
-  async updateOrder(id, order) {}
+  async updateOrder(id, order) {
+    await db.query(
+      `UPDATE orders SET comment = $1, courier_id = $2, status_id = $3 WHERE id = $4`,
+      [order.comment, order.courierId, order.statusId, id]
+    );
+  }
 
   async deleteOrder(id) {
     await db.query(`DELETE FROM orders WHERE id = $1`, [id]);

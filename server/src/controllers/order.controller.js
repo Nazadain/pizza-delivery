@@ -38,6 +38,19 @@ class OrderController {
 
   async updateOrder(req, res) {
     try {
+      const { id } = req.params;
+      const oldOrder = await OrderService.getOrderById(id);
+      if (!req.body.comment) {
+        req.body.comment = oldOrder.comment;
+      }
+      if (!req.body.statusId) {
+        req.body.statusId = oldOrder.status_id;
+      }
+      if (!req.body.courierId) {
+        req.body.courierId = oldOrder.courier_id;
+      }
+      await OrderService.updateOrder(id, req.body);
+      res.json({ message: "User updated successfully" });
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Update order error" });

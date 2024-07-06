@@ -16,6 +16,7 @@ CREATE TABLE "products" (
 
 CREATE TABLE "product_ingredients" (
   "id" varchar(100) PRIMARY KEY,
+  "quantity" integer NOT NULL,
   "product_id" varchar(100) NOT NULL,
   "ingredient_id" varchar(100) NOT NULL
 );
@@ -27,6 +28,7 @@ CREATE TABLE "ingredients" (
 
 CREATE TABLE "order_item_ingredients" (
   "id" varchar(100) PRIMARY KEY,
+  "quantity" integer NOT NULL,
   "ingredient_id" varchar(100) NOT NULL,
   "order_item_id" varchar(100) NOT NULL
 );
