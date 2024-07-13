@@ -1,7 +1,8 @@
 .shop__navbar {
   position: sticky;
   top: 0;
-  background: #fff;
+  background: rgb(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
