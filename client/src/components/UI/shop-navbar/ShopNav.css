@@ -1,0 +1,38 @@
+.shop__navbar {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 15px;
+  padding: 25px 100px;
+  z-index: 10;
+}
+.shop__navbar * {
+  text-decoration: none;
+  color: #03071E;
+}
+.shop__navbar a {
+  font-weight: bold;
+  margin-right: 10px;
+  transition: 0.1s;
+}
+.shop__navbar a:hover {
+  color: #F77F00;
+}
+.shop__navbar .cart__btn {
+  color: #FFF;
+  padding: 10px 15px;
+  border: 1px solid #F77F00;
+  border-radius: 20px;
+  background: #F77F00;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.shop__navbar .cart__btn:hover {
+  filter: brightness(0.95);
+}

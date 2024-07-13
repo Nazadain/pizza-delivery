@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'TT Rounds';
+  src: local('TT Rounds Italic'), local('TT-Rounds-Italic'),
+      url('../fonts/TTRounds/TTRounds-Italic.woff2') format('woff2'),
+      url('../fonts/TTRounds/TTRounds-Italic.woff') format('woff'),
+      url('../fonts/TTRounds/TTRounds-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'TT Rounds';
+  src: local('TT Rounds Black Italic'), local('TT-Rounds-Black-Italic'),
+      url('../fonts/TTRounds/TTRounds-BlackItalic.woff2') format('woff2'),
+      url('../fonts/TTRounds/TTRounds-BlackItalic.woff') format('woff'),
+      url('../fonts/TTRounds/TTRounds-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'TT Rounds';
+  src: local('TT Rounds Black'), local('TT-Rounds-Black'),
+      url('../fonts/TTRounds/TTRounds-Black.woff2') format('woff2'),
+      url('../fonts/TTRounds/TTRounds-Black.woff') format('woff'),
+      url('../fonts/TTRounds/TTRounds-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'TT Rounds';
+  src: local('TT Rounds Regular'), local('TT-Rounds-Regular'),
+      url('../fonts/TTRounds/TTRounds-Regular.woff2') format('woff2'),
+      url('../fonts/TTRounds/TTRounds-Regular.woff') format('woff'),
+      url('../fonts/TTRounds/TTRounds-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}

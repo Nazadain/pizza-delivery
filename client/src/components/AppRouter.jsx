@@ -3,6 +3,7 @@ import { privateRoutes, publicRoutes } from "../router/router";
 
 const AppRouter = () => {
   const isAuth = true;
+
   return (
     <Routes>
       {isAuth &&

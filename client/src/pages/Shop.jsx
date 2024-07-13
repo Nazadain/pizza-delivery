@@ -1,48 +1,39 @@
 import React, { useEffect, useState } from "react";
+import ProductList from "../components/ProductList";
+import { useFetching } from "../hooks/useFetching";
+import ProductAPI from "../http/ProductAPI";
+import "../styles/Shop.css";
+import ShopNav from "../components/UI/shop-navbar/ShopNav";
 
 const Shop = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const useFetching = (callback) => {
-    const fetching = async (...args) => {
-      try {
-        setIsLoading(true);
-        await callback(...args);
-      } catch (e) {
-        setError(e.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    return [fetching, isLoading, error];
-  };
-
-  const [fetchUsers, isUserLoading, postError] = useFetching(async (url) => {
-    const response = await fetch(url);
-    if (response.ok) {
-      const json = await response.json();
-      setUsers(json);
+  const [products, setProducts] = useState([]);
+  const [fetchProducts, isProductLoading, productError] = useFetching(
+    async () => {
+      const productsData = await ProductAPI.getAll();
+      setProducts(productsData);
     }
-  });
-
+  );
   useEffect(() => {
-    fetchUsers("http://localhost:5000/api/users");
+    fetchProducts();
   }, []);
 
   return (
     <div>
-      {isUserLoading ? (
-        <h1>Loading</h1>
-      ) : (
-        users.map((user) => (
-          <div>
-            <h4>{user.id}</h4>
-            <p>{user.name}</p>
-          </div>
-        ))
-      )}
+      <ShopNav />
+      <div className="slider">
+        <div className="background__filter"></div>
+      </div>
+
+      <div className="container">
+        <h1 className="section__title" id="combo">
+          Комбо
+        </h1>
+        {isProductLoading ? (
+          <h2>Загрузка...</h2>
+        ) : (
+          <ProductList products={products} />
+        )}
+      </div>
     </div>
   );
 };
