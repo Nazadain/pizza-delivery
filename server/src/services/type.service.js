@@ -2,9 +2,10 @@ const db = require("../../db");
 
 class TypeService {
   async createType(type) {
+    const anchor = "a" + Math.random().toString(16).slice(12);
     const newType = await db.query(
-      `INSERT INTO types (title) VALUES ($1) RETURNING *`,
-      [type.title]
+      `INSERT INTO types (title, anchor) VALUES ($1, $2) RETURNING *`,
+      [type.title, anchor]
     );
     return newType.rows[0];
   }

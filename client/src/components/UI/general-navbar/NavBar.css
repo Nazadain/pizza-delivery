@@ -24,37 +24,37 @@
 .header > .top__nav > .nav__item:hover {
   color: #F77F00;
 }
-.header > .middle__nav {
+.header > .bottom__nav {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 120px;
-  padding: 0 100px;
+  padding: 0 8%;
   flex-flow: row nowrap;
 }
-.header > .middle__nav .logo {
+.header > .bottom__nav .logo {
   font-size: 40px;
   color: #F77F00;
   font-weight: bold;
 }
-.header > .middle__nav > .logo__container > p {
+.header > .bottom__nav > .logo__container > p {
   line-height: 10px;
 }
-.header > .middle__nav .logo > span {
+.header > .bottom__nav .logo > span {
   color: #D00000;
 }
-.header > .middle__nav .address {
+.header > .bottom__nav .address {
   font-weight: bold;
 }
-.header > .middle__nav > .auth__btn {
+.header > .bottom__nav > .auth__btn {
   padding: 5px 10px;
-  border: 1px solid #F3F3F7;
+  border: 1px solid #F77F00;
+  color: #F77F00;
   border-radius: 15px;
-  background: #F3F3F7;
   cursor: pointer;
   transition: 0.15s;
 }
-.header > .middle__nav > .auth__btn:hover {
+.header > .bottom__nav > .auth__btn:hover {
   filter: brightness(0.9);
 }

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import "./NavBar.css";
+import { useState } from "react";
 
 const NavBar = () => {
+  const [isAuth, setIsAuth] = useState(false);
+
   return (
     <header className="header">
       <div className="top__nav">
@@ -12,7 +15,8 @@ const NavBar = () => {
           Контакты
         </Link>
       </div>
-      <div className="middle__nav">
+
+      <div className="bottom__nav">
         <div className="logo__container">
           <Link to={"/"} className="logo">
             PIZZA<span>HOT</span>
@@ -27,9 +31,13 @@ const NavBar = () => {
           <p>+7(3467) 127-803</p>
           <p>+7(3467) 831-662</p>
         </div>
-        <Link to={"/Login"} className="auth__btn">
-          Войти
-        </Link>
+        {isAuth ? (
+          <h2>Пользователь</h2>
+        ) : (
+          <Link to={"/Login"} className="auth__btn">
+            Войти
+          </Link>
+        )}
       </div>
     </header>
   );

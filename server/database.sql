@@ -35,7 +35,8 @@ CREATE TABLE "order_item_ingredients" (
 
 CREATE TABLE "types" (
   "id" serial PRIMARY KEY,
-  "title" varchar(100) UNIQUE NOT NULL
+  "title" varchar(100) UNIQUE NOT NULL,
+  "anchor" varchar(20) UNIQUE NOT NULL
 );
 
 CREATE TABLE "orders" (

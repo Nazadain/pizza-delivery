@@ -8,7 +8,12 @@ class ProductController {
     try {
       const id = uuid.v4();
       const { img } = req.files;
-      let fileName = `${uuid.v4()}.${img.mimetype.split("/")[1]}`;
+
+      let fileType = img.mimetype.split("/")[1];
+      if (fileType === "svg+xml") {
+        fileType = "svg";
+      }
+      let fileName = `${uuid.v4()}.${fileType}`;
       uploadFile(img, fileName);
       const newProduct = await ProductService.createProduct(
         id,

@@ -1,5 +1,5 @@
 .container {
-  padding: 0 100px;
+  padding: 0 8%;
 }
 .slider {
   width: 100%;
@@ -14,19 +14,68 @@
   background: #111;
   opacity: 0.5;
 }
-.container > .section__title {
-  margin: 20px 0;
+.container >.product__sections {
+  margin: 15px 0;
 }
-.container > .product__list {
+.container > .product__sections > .section {
+  margin: 25px 0;
+}
+.container > .product__sections > .section > .section__title {
+  font-size: 30px;
+}
+.product__list {
   display: flex;
   flex-flow: row wrap;
+  padding: 20px 0;
+  margin: 0 auto;
+  gap: 10px;
+}
+.product__list > .product__list__item {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 200px;
+  box-shadow: 0 0 8px #D3D3D3;
+  border-radius: 15px;
+  padding: 25px;
+  width: 300px;
+  cursor: pointer;
 }
-.container > .product__list > .product__list__item {
-  width: 200px;
+.product__list > .product__list__item > .product__header > .image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
-.container > .product__list > .product__list__item > img {
-  width: 200px;
-  height: 200px;
+.product__list > .product__list__item > .product__header > .image > img {
+  width: 225px;
+  height: 225px;
+}
+.product__list > .product__list__item > .product__header > .title {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.product__list > .product__list__item > .product__header > .body {
+  color: #b0b0b0;
+}
+.product__list > .product__list__item > .product__footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+.product__list > .product__list__item > .product__footer > .cart__add--btn {
+  background: #F77F00;
+  color: #fff;
+  border-radius: 15px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.product__list > .product__list__item > .product__footer > .cart__add--btn:hover {
+  filter: brightness(0.95);
+}
+.product__list > .product__list__item > .product__footer > .price {
+  font-size: 18px;
 }
