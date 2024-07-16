@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./ShopNav.css";
 
-const ShopNav = ({ active, types }) => {
+const ShopNav = ({ active, types, onClick }) => {
   useEffect(() => {
     const links = document.querySelectorAll(".nav__link");
     links.forEach((link) => {
@@ -13,6 +13,10 @@ const ShopNav = ({ active, types }) => {
       }
     });
   }, [active]);
+
+  const cartBtnHandler = () => {
+    onClick(true);
+  };
 
   return (
     <div className="shop__navbar">
@@ -26,7 +30,9 @@ const ShopNav = ({ active, types }) => {
           </a>
         ))}
       </ul>
-      <div className="cart__btn">Корзина</div>
+      <div className="cart__btn" onClick={cartBtnHandler}>
+        Корзина
+      </div>
     </div>
   );
 };

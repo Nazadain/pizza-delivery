@@ -1,0 +1,62 @@
+.modal__product {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0, 0, 0, 0.5);
+  z-index: 7;
+}
+.modal__product > .modal__product__block {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 20px;
+  width: 850px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px;
+}
+.modal__product > .modal__product__block > img {
+  width: 400px;
+}
+.modal__product > .modal__product__block > .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}
+.modal__product > .modal__product__block > .content > .main__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.modal__product > .modal__product__block > .content > .main__content > .title {
+  font-size: 26px;
+}
+.modal__product > .modal__product__block > .content > .cart__btn {
+  padding: 15px 15px;
+  color: #fff;
+  background: #F77F00;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.modal__product > .modal__product__block > .content > .cart__btn:hover {
+  filter: brightness(0.95);
+}
+.modal__product .close__btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+.modal__product .close__btn > img {
+  width: 20px;
+}

@@ -1,6 +1,14 @@
-const ProductList = ({ type, products }) => {
+const ProductList = ({ type, products, onClick }) => {
   const productClickHandler = (e) => {
-    const target = e.target.closest(".product__list__item");
+    const product = e.target.closest(".product__list__item");
+
+    const productId = product.getAttribute("data-id");
+
+    products.forEach((product) => {
+      if (product.id === productId) {
+        onClick(product);
+      }
+    });
   };
 
   return (
@@ -11,8 +19,8 @@ const ProductList = ({ type, products }) => {
             <div
               key={product.id}
               className="product__list__item"
-              onClick={productClickHandler}
               data-id={product.id}
+              onClick={productClickHandler}
             >
               <div className="product__header">
                 <div className="image">
