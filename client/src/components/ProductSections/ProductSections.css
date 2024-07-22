@@ -1,0 +1,9 @@
+.container {
+  padding: 0 8%;
+}
+.container > .product__section {
+  margin: 25px 0;
+}
+.container > .product__section > .title {
+  font-size: 30px;
+}

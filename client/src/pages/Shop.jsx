@@ -1,92 +1,83 @@
-import { useEffect, useState, useRef, useContext } from "react";
-import { useFetching } from "../hooks/useFetching";
-import TypeAPI from "../http/TypeAPI";
-import "../styles/Shop.css";
-import ShopNav from "../components/UI/shop-navbar/ShopNav";
-import Cart from "../components/UI/cart/Cart";
-import ShopContainer from "../components/ShopContainer";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import CartContainer from "../components/CartContainer/CartContainer";
+import ModalProduct from "../components/ModalProduct/ModalProduct";
+import ProductSections from "../components/ProductSections/ProductSections";
+import ShopHeader from "../components/ShopHeader/ShopHeader";
+import Slider from "../components/Slider/Slider";
 import { CartContext } from "../context";
+import { useFetching } from "../hooks/useFetching";
+import { useObserver } from "../hooks/useObserver";
+import TypeAPI from "../http/TypeAPI";
+
+export const TypeContext = createContext(null);
+export const ModalContext = createContext(null);
 
 const Shop = () => {
-  const [activeSection, setActiveSection] = useState(null);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState();
+  const [modalData, setModalData] = useState(null);
+  const [cartProducts, setCartProducts] = useContext(CartContext)[0];
   const [types, setTypes] = useState([]);
-  const cartProducts = useContext(CartContext);
-  const observer = useRef(null);
+  const sectionsRef = useRef([]);
   const [fetchTypes, isTypeLoading, typeError] = useFetching(async () => {
     const typesData = await TypeAPI.getAll();
     setTypes(typesData);
   });
+  const options = {
+    threshold: 0.5,
+  };
 
   useEffect(() => {
     fetchTypes();
   }, []);
 
-  useEffect(() => {
-    let options = {
-      threshold: 0.5,
-    };
-    observer.current = new IntersectionObserver((entries) => {
-      const visibleSection = entries.find(
-        (entry) => entry.isIntersecting
-      )?.target;
+  useObserver(sectionsRef, isTypeLoading, options, (visibleElement) => {
+    const sections = sectionsRef.current;
 
-      if (visibleSection) {
-        setActiveSection(visibleSection.id);
-      }
-    }, options);
-    const sections = document.querySelectorAll(".section");
-    const header = document.querySelector(".header");
+    const isFirstSection = activeSection !== sections[0];
+    const isLastSection = activeSection !== sections[sections.length];
 
-    sections.forEach((section) => {
-      observer.current.observe(section);
-    });
-    observer.current.observe(header);
-
-    return () => {
-      observer.current.unobserve(header);
-      sections.forEach((section) => {
-        observer.current.unobserve(section);
-      });
-    };
-  }, [fetchTypes]);
-
-  const cartBtnHandler = (value) => {
-    if (value === "cart") {
-      return setIsCartOpen(false);
+    if (!visibleElement && (isFirstSection || isLastSection)) {
+      return setActiveSection(null);
     }
-    if (isCartOpen === false) {
-      setIsCartOpen(value);
-    } else {
-      setIsCartOpen(false);
+    setActiveSection(visibleElement.id);
+  });
+
+  const addToCart = (product) => {
+    if (cartProducts.includes(product)) {
+      const cartItem = cartProducts.filter((p) => p.id === product.id)[0];
+      const itemIndex = cartProducts.indexOf(cartItem);
+
+      const newCartProducts = cartProducts;
+      newCartProducts[itemIndex].quantity += 1;
+
+      setCartProducts(newCartProducts);
+      return localStorage.setItem("cart", JSON.stringify(newCartProducts));
     }
+
+    product.quantity = 1;
+    const newCartProducts = [...cartProducts, product];
+    localStorage.setItem("cart", JSON.stringify(newCartProducts));
+    setCartProducts(newCartProducts);
   };
 
   return (
-    <>
-      {isTypeLoading ? (
-        <div className="loading__type"></div>
-      ) : (
-        <ShopNav
-          active={activeSection}
-          types={types}
-          onClick={cartBtnHandler}
-        />
-      )}
-      <Cart isCartOpen={isCartOpen} />
-      <div
-        className={`cart__fade ${isCartOpen ? "fade__active" : ""}`}
-        onClick={cartBtnHandler}
-      ></div>
-      <div className="slider">
-        <div className="background__filter"></div>
-      </div>
-      {isTypeLoading ? (
-        <div className="loading__type"></div>
-      ) : (
-        <ShopContainer types={types} />
-      )}
-    </>
+    <ModalContext.Provider value={[modalData, setModalData]}>
+      <ShopHeader
+        active={activeSection}
+        types={types}
+        isLoading={isTypeLoading}
+      />
+
+      <Slider />
+
+      <TypeContext.Provider value={[types, setTypes]}>
+        <ProductSections addToCartClick={addToCart} />
+      </TypeContext.Provider>
+
+      <CartContainer />
+
+      <ModalProduct addToCartClick={addToCart} />
+    </ModalContext.Provider>
   );
 };
 

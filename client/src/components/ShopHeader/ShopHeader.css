@@ -21,6 +21,7 @@
 .shop__navbar * {
   text-decoration: none;
   color: #03071E;
+  cursor: pointer;
 }
 .shop__navbar .nav__link {
   font-weight: bold;
@@ -36,12 +37,13 @@
   width: 40px;
 }
 .shop__navbar .cart__btn {
+  font-family: "TT Rounds";
+  font-size: 16px;
   color: #FFF;
-  padding: 10px 15px;
+  padding: 8px 15px;
   border: 1px solid #F77F00;
   border-radius: 20px;
   background: #F77F00;
-  cursor: pointer;
   transition: 0.25s;
 }
 .shop__navbar .cart__btn:hover {

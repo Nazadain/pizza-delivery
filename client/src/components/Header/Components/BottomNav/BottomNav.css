@@ -1,29 +1,3 @@
-.header {
-  position: relative;
-  display: flex;
-  flex-flow: column nowrap;
-  width: 100%;
-}
-.header * {
-  text-decoration: none;
-  color: #03071E;
-}
-.header > .top__nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 40px;
-  border-bottom: 1px solid #D3D3D3;
-}
-.header > .top__nav > .nav__item {
-  margin-right: 10px;
-  color: #8D99AE;
-  transition: 0.1s;
-}
-.header > .top__nav > .nav__item:hover {
-  color: #F77F00;
-}
 .header > .bottom__nav {
   position: relative;
   display: flex;

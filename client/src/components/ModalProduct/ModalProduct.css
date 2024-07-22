@@ -52,11 +52,11 @@
   filter: brightness(0.95);
 }
 .modal__product .close__btn {
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 15px;
   cursor: pointer;
 }
 .modal__product .close__btn > img {
-  width: 20px;
+  width: 30px;
 }
