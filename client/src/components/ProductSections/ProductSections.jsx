@@ -1,7 +1,7 @@
 import { memo, useContext, useEffect, useState } from "react";
+import { TypeContext } from "../../context";
 import { useFetching } from "../../hooks/useFetching";
 import ProductAPI from "../../http/ProductAPI";
-import { TypeContext } from "../../pages/Shop";
 import Title from "../UI/Title/Title";
 import ProductList from "./Components/ProductList/ProductList";
 import "./ProductSections.css";

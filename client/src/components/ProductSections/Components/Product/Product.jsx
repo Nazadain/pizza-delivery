@@ -1,6 +1,5 @@
 import { memo, useContext, useEffect, useState } from "react";
-import { CartContext } from "../../../../context";
-import { ModalContext } from "../../../../pages/Shop";
+import { CartContext, ModalContext } from "../../../../context";
 import Title from "../../../UI/Title/Title";
 import ProductButton from "../ProductButton/ProductButton";
 import "./Product.css";

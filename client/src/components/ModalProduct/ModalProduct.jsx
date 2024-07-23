@@ -1,5 +1,5 @@
-import { memo, useContext, useEffect } from "react";
-import { ModalContext } from "../../pages/Shop";
+import { memo, useContext } from "react";
+import { ModalContext } from "../../context";
 import "./ModalProduct.css";
 
 const ModalProduct = memo(({ addToCartClick, ...props }) => {

@@ -4,18 +4,16 @@ import ModalProduct from "../components/ModalProduct/ModalProduct";
 import ProductSections from "../components/ProductSections/ProductSections";
 import ShopHeader from "../components/ShopHeader/ShopHeader";
 import Slider from "../components/Slider/Slider";
-import { CartContext } from "../context";
+import { CartContext, ModalContext, TypeContext } from "../context";
 import { useFetching } from "../hooks/useFetching";
 import { useObserver } from "../hooks/useObserver";
 import TypeAPI from "../http/TypeAPI";
-
-export const TypeContext = createContext(null);
-export const ModalContext = createContext(null);
 
 const Shop = () => {
   const [activeSection, setActiveSection] = useState();
   const [modalData, setModalData] = useState(null);
   const [cartProducts, setCartProducts] = useContext(CartContext)[0];
+  const [isCartOpen, setIsCartOpen] = useContext(CartContext)[1];
   const [types, setTypes] = useState([]);
   const sectionsRef = useRef([]);
   const [fetchTypes, isTypeLoading, typeError] = useFetching(async () => {
@@ -28,6 +26,12 @@ const Shop = () => {
 
   useEffect(() => {
     fetchTypes();
+
+    document.addEventListener("keydown", closeModal);
+
+    return () => {
+      document.removeEventListener("keydown", closeModal);
+    };
   }, []);
 
   useObserver(sectionsRef, isTypeLoading, options, (visibleElement) => {
@@ -58,6 +62,13 @@ const Shop = () => {
     const newCartProducts = [...cartProducts, product];
     localStorage.setItem("cart", JSON.stringify(newCartProducts));
     setCartProducts(newCartProducts);
+  };
+
+  const closeModal = (e) => {
+    if (e.keyCode === 27) {
+      setModalData(null);
+      setIsCartOpen(false);
+    }
   };
 
   return (
