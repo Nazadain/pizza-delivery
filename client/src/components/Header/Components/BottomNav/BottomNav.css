@@ -23,8 +23,8 @@
 }
 .header > .bottom__nav > .auth__btn {
   padding: 5px 10px;
-  border: 1px solid #F77F00;
-  color: #F77F00;
+  background: #F3F3F7;
+  color: #111;
   border-radius: 15px;
   cursor: pointer;
   transition: 0.15s;

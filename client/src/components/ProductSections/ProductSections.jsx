@@ -22,8 +22,13 @@ const ProductSections = memo(({ addToCartClick, ...props }) => {
 
   return (
     <div className="container">
-      {types.map((type) => (
-        <section className="product__section" key={type.id}>
+      {types.map((type, i) => (
+        <section
+          className="product__section"
+          id={type.anchor}
+          key={type.id}
+          ref={(el) => (props.forwardRef.current[i] = el)}
+        >
           <Title variant="h2" className="title">
             {type.title}
           </Title>

@@ -5,9 +5,6 @@
   scroll-behavior: smooth;
   outline: none;
 }
-html {
-  scrollbar-gutter: stable;
-}
 body {
   overflow-y: auto;
   font-family: "TT Rounds", sans-serif;

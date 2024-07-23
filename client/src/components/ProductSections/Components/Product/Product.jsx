@@ -36,7 +36,7 @@ const Product = memo(({ product, addToCartClick, ...props }) => {
     >
       <div className="product__header">
         <div className="image">
-          <img src={`${process.env.REACT_APP_API_URL}${product.img}`} />
+          <img src={`${process.env.REACT_APP_API_URL}/${product.img}`} />
         </div>
         <Title className="title" variant="h3">
           {product.title}

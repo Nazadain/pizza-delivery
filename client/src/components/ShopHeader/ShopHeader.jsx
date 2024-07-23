@@ -1,7 +1,7 @@
 import { memo, useContext, useEffect, useState } from "react";
-import "./ShopHeader.css";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context";
+import "./ShopHeader.css";
 
 const ShopHeader = memo(({ active, types, ...props }) => {
   if (props.isLoading) return <div className="loading__type"></div>;
@@ -53,14 +53,15 @@ const ShopHeader = memo(({ active, types, ...props }) => {
   return (
     <div className="shop__navbar">
       <ul className="nav__list">
-        <Link className="anchor__logo">
-          <img src="http://localhost:5000/pizza-logo.svg" />
+        <Link className="anchor__logo" onClick={clickLinkHandler}>
+          <img src={`${process.env.REACT_APP_API_URL}/pizza-logo.svg`} />
         </Link>
-        {types.map((type) => (
+        {types.map((type, i) => (
           <Link
             data-link={`${type.anchor}`}
             className="nav__link"
             key={type.id}
+            onClick={clickLinkHandler}
           >
             {type.title}
           </Link>

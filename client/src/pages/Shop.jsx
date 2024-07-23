@@ -71,7 +71,7 @@ const Shop = () => {
       <Slider />
 
       <TypeContext.Provider value={[types, setTypes]}>
-        <ProductSections addToCartClick={addToCart} />
+        <ProductSections addToCartClick={addToCart} forwardRef={sectionsRef} />
       </TypeContext.Provider>
 
       <CartContainer />

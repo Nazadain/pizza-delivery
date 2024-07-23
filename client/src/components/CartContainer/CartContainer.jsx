@@ -1,10 +1,21 @@
-import { useContext } from "react";
+import { memo, useContext, useEffect } from "react";
 import { CartContext } from "../../context";
 import Cart from "./Components/Сart/Cart";
 import "./CartContainer.css";
 
-const CartContainer = ({ ...props }) => {
+const CartContainer = memo(({ ...props }) => {
   const [isCartOpen, setIsCartOpen] = useContext(CartContext)[1];
+
+  useEffect(() => {
+    if (isCartOpen) {
+      const scrollWidth = window.scrollX;
+      document.body.style.overflowY = "hidden";
+      document.body.style.paddingRight = scrollWidth;
+    } else {
+      document.body.style.overflowY = "scroll";
+      document.body.style.paddingRight = "0";
+    }
+  }, [isCartOpen]);
 
   return (
     <>
@@ -16,6 +27,6 @@ const CartContainer = ({ ...props }) => {
       <Cart />
     </>
   );
-};
+});
 
 export default CartContainer;

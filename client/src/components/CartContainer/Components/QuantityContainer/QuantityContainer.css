@@ -1,0 +1,20 @@
+.cart__container > .cart__items--container > .cart__item > .main__content > .item__quantity {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px 0;
+  background: #f3f3f7;
+  border: 1px solid #f3f3f7;
+  border-radius: 15px;
+  padding: 4px 8px;
+  width: 50%;
+  font-size: 18px;
+}
+.cart__container > .cart__items--container > .cart__item > .main__content > .item__quantity > .btn {
+  color: #111;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+}

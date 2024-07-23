@@ -1,4 +1,4 @@
-import { memo, useContext } from "react";
+import { memo, useContext, useEffect } from "react";
 import { ModalContext } from "../../pages/Shop";
 import "./ModalProduct.css";
 
@@ -31,7 +31,7 @@ const ModalProduct = memo(({ addToCartClick, ...props }) => {
           />
         </div>
 
-        <img src={`${process.env.REACT_APP_API_URL}${modalData.img}`} />
+        <img src={`${process.env.REACT_APP_API_URL}/${modalData.img}`} />
         <div className="content">
           <div className="main__content">
             <h3 className="title">{modalData.title}</h3>
