@@ -7,11 +7,11 @@ require("dotenv").config();
 class UserController {
   async registration(req, res) {
     try {
-      const { login, password, role } = req.body;
+      const { name, password, role } = req.body;
       const id = uuid.v4();
       const hashPassword = sha256(password);
       const newUser = await UserService.createUser(id, hashPassword, req.body);
-      const token = generateAccessToken(login, role, id);
+      const token = generateAccessToken(name, role, id);
       res.json({ user: newUser, token: token });
     } catch (e) {
       console.log(e);
