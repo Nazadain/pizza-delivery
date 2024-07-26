@@ -4,7 +4,7 @@ import Title from "../../../UI/Title/Title";
 import ProductButton from "../ProductButton/ProductButton";
 import "./Product.css";
 
-const Product = memo(({ product, addToCartClick, ...props }) => {
+const Product = ({ product, addToCartClick, ...props }) => {
   const [cartProducts, setCartProducts] = useContext(CartContext)[0];
   const [modalData, setModalData] = useContext(ModalContext);
   const [isActive, setIsActive] = useState(false);
@@ -56,6 +56,6 @@ const Product = memo(({ product, addToCartClick, ...props }) => {
       </div>
     </div>
   );
-});
+};
 
 export default Product;

@@ -1,11 +1,16 @@
-import { memo, useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../context";
-import Title from "../../../UI/Title/Title";
+import UserAvatar from "../UserAvatar/UserAvatar";
 import "./BottomNav.css";
 
-const BottomNav = memo(() => {
+const BottomNav = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
+
+  const logout = () => {
+    setIsAuth(false);
+    localStorage.removeItem("auth");
+  };
 
   return (
     <div className="bottom__nav">
@@ -27,14 +32,14 @@ const BottomNav = memo(() => {
       </div>
 
       {isAuth ? (
-        <Title variant="h4">Пользователь</Title>
+        <UserAvatar />
       ) : (
-        <Link to={"/Login"} className="auth__btn">
+        <Link to={"/login"} className="auth__btn">
           Войти
         </Link>
       )}
     </div>
   );
-});
+};
 
 export default BottomNav;

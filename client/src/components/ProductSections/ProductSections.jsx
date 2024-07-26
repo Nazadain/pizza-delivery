@@ -6,7 +6,7 @@ import Title from "../UI/Title/Title";
 import ProductList from "./Components/ProductList/ProductList";
 import "./ProductSections.css";
 
-const ProductSections = memo(({ addToCartClick, ...props }) => {
+const ProductSections = ({ addToCartClick, ...props }) => {
   const [types, setTypes] = useContext(TypeContext);
   const [products, setProducts] = useState([]);
   const [fetchProducts, isProductLoading, productError] = useFetching(
@@ -42,6 +42,6 @@ const ProductSections = memo(({ addToCartClick, ...props }) => {
       ))}
     </div>
   );
-});
+};
 
 export default ProductSections;

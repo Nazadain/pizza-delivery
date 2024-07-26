@@ -1,20 +1,41 @@
 export default class AuthAPI {
   static async registration(user) {
-    const res = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/users/registration`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      }
-    );
-    if (!res) {
-      throw new Error(res.statusText);
-    }
-    const newUser = await res.json();
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/users/registration`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      const newUser = await res.json();
 
-    return newUser;
+      return newUser;
+    } catch (e) {
+      res.status(400).json({ message: "Auth error" });
+    }
+  }
+
+  static async login(user) {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/users/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      const loginData = await res.json();
+
+      return loginData;
+    } catch (e) {
+      res.status(400).json({ message: "Auth error" });
+    }
   }
 }

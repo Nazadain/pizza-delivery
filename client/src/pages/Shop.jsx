@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import CartContainer from "../components/CartContainer/CartContainer";
 import ModalProduct from "../components/ModalProduct/ModalProduct";
 import ProductSections from "../components/ProductSections/ProductSections";
@@ -26,7 +26,6 @@ const Shop = () => {
 
   useEffect(() => {
     fetchTypes();
-
     document.addEventListener("keydown", closeModal);
 
     return () => {
@@ -57,7 +56,6 @@ const Shop = () => {
       setCartProducts(newCartProducts);
       return localStorage.setItem("cart", JSON.stringify(newCartProducts));
     }
-
     product.quantity = 1;
     const newCartProducts = [...cartProducts, product];
     localStorage.setItem("cart", JSON.stringify(newCartProducts));
@@ -78,7 +76,6 @@ const Shop = () => {
         types={types}
         isLoading={isTypeLoading}
       />
-
       <Slider />
 
       <TypeContext.Provider value={[types, setTypes]}>

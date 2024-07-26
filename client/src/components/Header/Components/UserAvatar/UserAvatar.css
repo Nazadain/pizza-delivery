@@ -1,0 +1,38 @@
+.user__container > .avatar {
+  position: relative;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 100%;
+  background: #F3F3F7;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.user__container > .avatar:hover {
+  filter: brightness(0.95);
+}
+.user__container > .modal__options {
+  display: none;
+  position: absolute;
+  top: 85px;
+  right: 8%;
+  flex-direction: column;
+  width: 150px;
+  padding: 10px;
+  box-shadow: 0 0 10px #D3D3D3;
+  gap: 5px;
+  background: #fff;
+  z-index: 6;
+}
+.user__container > .active {
+  display: flex;
+}
+.user__container > .modal__options > .btn {
+  transition: 0.1s;
+}
+.user__container > .modal__options > .btn:hover {
+  color: #F77F00;
+}

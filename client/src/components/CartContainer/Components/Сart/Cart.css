@@ -6,11 +6,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   width: 485px;
   height: 100vh;
-  padding-top: 20px;
   background: #fff;
+  padding-top: 20px;
+  gap: 20px;
   text-align: center;
   transition: 0.3s;
   overflow-y: auto;
@@ -22,7 +23,6 @@
 }
 .cart__container > .cart__footer {
   position: sticky;
-  right: 0;
   bottom: 0;
   display: flex;
   flex-direction: column;

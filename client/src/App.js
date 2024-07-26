@@ -14,7 +14,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (localStorage.getItem("isAuth")) {
+    if (localStorage.getItem("auth")) {
       setIsAuth(true);
     }
     const cartData = JSON.parse(localStorage.getItem("cart"));

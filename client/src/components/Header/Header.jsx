@@ -5,8 +5,8 @@ import "./Header.css";
 const Header = () => {
   return (
     <header className="header">
-      <TopNav className="top__nav"></TopNav>
-      <BottomNav className="bottom__nav"></BottomNav>
+      <TopNav></TopNav>
+      <BottomNav></BottomNav>
     </header>
   );
 };

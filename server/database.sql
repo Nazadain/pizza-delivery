@@ -14,25 +14,6 @@ CREATE TABLE "products" (
   "type_id" integer NOT NULL
 );
 
-CREATE TABLE "product_ingredients" (
-  "id" varchar(100) PRIMARY KEY,
-  "quantity" integer NOT NULL,
-  "product_id" varchar(100) NOT NULL,
-  "ingredient_id" varchar(100) NOT NULL
-);
-
-CREATE TABLE "ingredients" (
-  "id" varchar(100) PRIMARY KEY,
-  "title" varchar(255) UNIQUE NOT NULL
-);
-
-CREATE TABLE "order_item_ingredients" (
-  "id" varchar(100) PRIMARY KEY,
-  "quantity" integer NOT NULL,
-  "ingredient_id" varchar(100) NOT NULL,
-  "order_item_id" varchar(100) NOT NULL
-);
-
 CREATE TABLE "types" (
   "id" serial PRIMARY KEY,
   "title" varchar(100) UNIQUE NOT NULL,
@@ -75,13 +56,5 @@ ALTER TABLE "order_items" ADD FOREIGN KEY ("order_id") REFERENCES "orders" ("id"
 ALTER TABLE "order_items" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
 
 ALTER TABLE "products" ADD FOREIGN KEY ("type_id") REFERENCES "types" ("id");
-
-ALTER TABLE "product_ingredients" ADD FOREIGN KEY ("ingredient_id") REFERENCES "ingredients" ("id");
-
-ALTER TABLE "product_ingredients" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
-
-ALTER TABLE "order_item_ingredients" ADD FOREIGN KEY ("order_item_id") REFERENCES "order_items" ("id");
-
-ALTER TABLE "order_item_ingredients" ADD FOREIGN KEY ("ingredient_id") REFERENCES "ingredients" ("id");
 
 ALTER TABLE "orders" ADD FOREIGN KEY ("courier_id") REFERENCES "users" ("id");

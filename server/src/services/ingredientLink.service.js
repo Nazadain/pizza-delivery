@@ -5,8 +5,8 @@ class IngredientLinkService {
     let newLink;
     if (table === "product_ingredients") {
       newLink = await db.query(
-        `INSERT INTO product_ingredients (id, quantity, product_id, ingredient_id) VALUES ($1, $2, $3, $4) RETURNING *`,
-        [id, link.quantity, link.productId, link.ingredientId]
+        `INSERT INTO product_ingredients (id, product_id, ingredient_id) VALUES ($1, $2, $3) RETURNING *`,
+        [id, link.productId, link.ingredientId]
       );
     }
     if (table === "order_item_ingredients") {
