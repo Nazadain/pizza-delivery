@@ -9,8 +9,17 @@ class OrderItemService {
     return newOrderItem.rows[0];
   }
 
-  async getOrderItems() {
-    const orderItems = await db.query(`SELECT * FROM order_items`);
+  async getOrderItems(orderId = null) {
+    let orderItems;
+    if (!orderId) {
+      orderItems = await db.query(`SELECT * FROM order_items`);
+    } else {
+      orderItems = await db.query(
+        `SELECT * FROM order_items WHERE order_id=$1`,
+        [orderId]
+      );
+    }
+
     return orderItems.rows;
   }
 
@@ -24,6 +33,10 @@ class OrderItemService {
 
   async deleteOrderItem(id) {
     await db.query(`DELETE FROM order_items WHERE id = $1`, [id]);
+  }
+
+  async deleteOrderItemsByOrderId(id) {
+    await db.query(`DELETE FROM order_items WHERE order_id = $1`, [id]);
   }
 }
 

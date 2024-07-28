@@ -5,10 +5,9 @@
   scroll-behavior: smooth;
   outline: none;
 }
+html {
+  overflow-y: scroll;
+}
 body {
-  display: flex; 
-  flex-direction: column; 
-  min-height: 100vh;
-  overflow-y: auto;
   font-family: "TT Rounds", sans-serif;
 }

@@ -1,4 +1,5 @@
 const UserService = require("../services/user.service");
+const OrderService = require("../services/order.service");
 const sha256 = require("js-sha256");
 const uuid = require("uuid");
 const jwt = require("jsonwebtoken");
@@ -75,6 +76,7 @@ class UserController {
 
   async deleteUser(req, res) {
     try {
+      await OrderService.deleteOrdersByUserId(req.params.id);
       await UserService.deleteUser(req.params.id);
       res.json("User deleted successfully");
     } catch (e) {

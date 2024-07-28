@@ -18,5 +18,6 @@ router.delete(
   checkRoleMiddleware("ADMIN", "MANAGER"),
   OrderController.deleteOrder
 );
+router.delete("/", authMiddleware, OrderController.deleteOrdersByUserId);
 
 module.exports = router;

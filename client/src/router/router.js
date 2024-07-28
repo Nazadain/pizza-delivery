@@ -7,8 +7,8 @@ import Manager from "../pages/Manager";
 import Courier from "../pages/Courier";
 import Contacts from "../pages/Contacts";
 import Kitchen from "../pages/Kitchen";
-import UserOrders from "../pages/UserOrders";
-import Error from "../pages/Error";
+import UserOrders from "../pages/UserOrders/UserOrders";
+import Error from "../pages/Error/Error";
 
 export const privateRoutes = [
   { path: "/order", element: <Order />, exact: true },

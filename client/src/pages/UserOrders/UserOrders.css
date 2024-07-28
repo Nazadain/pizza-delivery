@@ -1,0 +1,15 @@
+.orders__container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 25px 0;
+}
+.container > .orders__container > .order {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  min-width: 250px;
+  box-shadow: 0 0 10px #D3D3D3;
+  border-radius: 15px;
+  cursor: pointer;
+}

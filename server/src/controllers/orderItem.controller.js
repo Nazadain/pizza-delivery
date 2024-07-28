@@ -15,7 +15,7 @@ class OrderItemController {
 
   async getOrderItems(req, res) {
     try {
-      const orderItems = await OrderItemService.getOrderItems();
+      const orderItems = await OrderItemService.getOrderItems(req.query.order);
       res.json(orderItems);
     } catch (e) {
       console.log(e);
@@ -37,6 +37,16 @@ class OrderItemController {
     try {
       await OrderItemService.deleteOrderItem(req.params.id);
       res.json({ message: "Order item deleted successfully" });
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: "error" });
+    }
+  }
+
+  async deleteOrderItemsByOrderId(req, res) {
+    try {
+      await OrderItemService.deleteOrderItem(req.query.orderId);
+      res.json({ message: "Order items deleted successfully" });
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "error" });

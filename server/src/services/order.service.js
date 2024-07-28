@@ -19,8 +19,16 @@ class OrderService {
     return newOrder.rows[0];
   }
 
-  async getOrders() {
-    const orders = await db.query(`SELECT * FROM orders`);
+  async getOrders(userId = null) {
+    let orders;
+    if (!userId) {
+      orders = await db.query(`SELECT * FROM orders`);
+    } else {
+      orders = await db.query(`SELECT * FROM orders WHERE user_id=$1`, [
+        userId,
+      ]);
+    }
+
     return orders.rows;
   }
 
@@ -38,6 +46,10 @@ class OrderService {
 
   async deleteOrder(id) {
     await db.query(`DELETE FROM orders WHERE id = $1`, [id]);
+  }
+
+  async deleteOrdersByUserId(id) {
+    await db.query(`DELETE FROM orders WHERE user_id = $1`, [id]);
   }
 }
 

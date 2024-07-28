@@ -1,10 +1,10 @@
-import { memo, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../context";
 import { useFetching } from "../../../../hooks/useFetching";
 import AuthAPI from "../../../../http/AuthAPI";
 
-const RegistrationForm = memo(({ ...props }) => {
+const RegistrationForm = ({ ...props }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({ name: "", password: "", role: "" });
   const [isAuth, setIsAuth] = useContext(AuthContext);
@@ -61,6 +61,6 @@ const RegistrationForm = memo(({ ...props }) => {
       <button>Создать аккаунт</button>
     </form>
   );
-});
+};
 
 export default RegistrationForm;

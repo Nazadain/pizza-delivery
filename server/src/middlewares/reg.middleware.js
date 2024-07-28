@@ -5,6 +5,9 @@ module.exports = async function userDataValidation(req, res, next) {
   if (!name || !password || !role) {
     return res.status(400).json({ message: "Not all data has been entered" });
   }
+
+  name = name.toLowerCase();
+
   const candidate = await UserService.getUsers(name);
   if (candidate) {
     return res.status(400).json({ message: "User already exists" });

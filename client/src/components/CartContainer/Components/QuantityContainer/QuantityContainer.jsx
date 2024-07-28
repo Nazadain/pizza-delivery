@@ -6,7 +6,6 @@ const QuantityContainer = memo(({ product, ...props }) => {
   const [cartProducts, setCartProducts] = useContext(CartContext)[0];
 
   const setNewCartProducts = (array) => {
-    console.log(array);
     setCartProducts(array);
     localStorage.setItem("cart", JSON.stringify(array));
   };

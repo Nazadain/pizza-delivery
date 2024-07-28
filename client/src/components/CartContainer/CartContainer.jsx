@@ -1,19 +1,19 @@
 import { memo, useContext, useEffect } from "react";
 import { CartContext } from "../../context";
-import Cart from "./Components/Сart/Cart";
 import "./CartContainer.css";
+import Cart from "./Components/Сart/Cart";
 
 const CartContainer = memo(({ ...props }) => {
   const [isCartOpen, setIsCartOpen] = useContext(CartContext)[1];
 
   useEffect(() => {
     if (isCartOpen) {
-      const scrollWidth = window.scrollX;
-      document.body.style.overflowY = "hidden";
-      document.body.style.paddingRight = scrollWidth;
+      let scrollbarWidth = `${window.innerWidth - document.body.clientWidth}px`;
+      document.documentElement.style.overflowY = "hidden";
+      document.body.style.marginRight = scrollbarWidth;
     } else {
-      document.body.style.overflowY = "scroll";
-      document.body.style.paddingRight = "0";
+      document.body.style.marginRight = "0";
+      document.documentElement.style.overflowY = "scroll";
     }
   }, [isCartOpen]);
 

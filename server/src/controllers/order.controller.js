@@ -1,4 +1,5 @@
 const OrderService = require("../services/order.service");
+const OrderItemService = require("../services/orderItem.service");
 const uuid = require("uuid");
 
 class OrderController {
@@ -18,7 +19,7 @@ class OrderController {
 
   async getOrders(req, res) {
     try {
-      const orders = await OrderService.getOrders();
+      const orders = await OrderService.getOrders(req.query.user);
       res.json(orders);
     } catch (e) {
       console.log(e);
@@ -59,11 +60,23 @@ class OrderController {
 
   async deleteOrder(req, res) {
     try {
+      await OrderItemService.deleteOrderItemsByOrderId(req.params.id);
       await OrderService.deleteOrder(req.params.id);
       res.json({ message: "Order deleted successfully" });
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Delete order error" });
+    }
+  }
+
+  async deleteOrdersByUserId(req, res) {
+    try {
+      await OrderItemService.deleteOrderItemsByOrderId(req.params.id);
+      await OrderService.deleteOrdersByUserId(req.query.userId);
+      res.json({ message: "Orders deleted successfully" });
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: "Delete orders error" });
     }
   }
 }

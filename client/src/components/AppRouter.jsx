@@ -4,7 +4,9 @@ import { AuthContext } from "../context";
 import { privateRoutes, publicRoutes } from "../router/router";
 
 const AppRouter = () => {
-  const isAuth = useContext(AuthContext);
+  const [isAuth, setIsAuth, isLoading] = useContext(AuthContext);
+
+  if (isLoading) return <></>;
 
   return (
     <Routes>

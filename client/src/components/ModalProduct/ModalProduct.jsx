@@ -1,9 +1,20 @@
-import { memo, useContext } from "react";
+import { memo, useContext, useEffect } from "react";
 import { ModalContext } from "../../context";
 import "./ModalProduct.css";
 
 const ModalProduct = memo(({ addToCartClick, ...props }) => {
   const [modalData, setModalData] = useContext(ModalContext);
+
+  useEffect(() => {
+    if (modalData) {
+      let scrollbarWidth = `${window.innerWidth - document.body.clientWidth}px`;
+      document.documentElement.style.overflowY = "hidden";
+      document.body.style.marginRight = scrollbarWidth;
+    } else {
+      document.body.style.marginRight = "0";
+      document.documentElement.style.overflowY = "scroll";
+    }
+  }, [modalData]);
 
   if (!modalData) return <></>;
 
