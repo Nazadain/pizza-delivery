@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import { AuthContext, CartContext } from "./context";
 import "./styles/App.css";
 import "./styles/fonts.css";
+import ActiveOrders from "./components/CurrentOrders/ActiveOrders";
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);

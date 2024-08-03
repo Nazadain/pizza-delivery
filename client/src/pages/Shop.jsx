@@ -30,6 +30,8 @@ const Shop = () => {
 
     return () => {
       document.removeEventListener("keydown", closeModal);
+      document.documentElement.style.overflowY = "scroll";
+      document.body.style.marginRight = 0;
     };
   }, []);
 

@@ -1,5 +1,9 @@
 const Manager = () => {
-  return <div>MANAGER</div>;
+  return (
+    <>
+      <div className="container">ABOUT</div>
+    </>
+  );
 };
 
 export default Manager;

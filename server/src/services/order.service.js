@@ -3,10 +3,11 @@ const db = require("../../db");
 class OrderService {
   async createOrder(id, order) {
     const newOrder = await db.query(
-      `INSERT INTO orders (id, comment, street, house_num, apartment_num, phone, customer_name, status_id, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+      `INSERT INTO orders (id, comment, price, street, house_num, apartment_num, phone, customer_name, status_id, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
       [
         id,
         order.comment,
+        order.price,
         order.street,
         order.houseNum,
         order.apartmentNum,

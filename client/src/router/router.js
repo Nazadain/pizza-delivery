@@ -2,7 +2,7 @@ import Admin from "../pages/Admin";
 import About from "../pages/About";
 import Auth from "../pages/Auth/Auth";
 import Shop from "../pages/Shop";
-import Order from "../pages/Order";
+import Order from "../pages/Order/Order";
 import Manager from "../pages/Manager";
 import Courier from "../pages/Courier";
 import Contacts from "../pages/Contacts";

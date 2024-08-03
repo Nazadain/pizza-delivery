@@ -11,3 +11,12 @@ html {
 body {
   font-family: "TT Rounds", sans-serif;
 }
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+#root .container {
+  padding: 0 8%;
+  flex-grow: 1;
+}

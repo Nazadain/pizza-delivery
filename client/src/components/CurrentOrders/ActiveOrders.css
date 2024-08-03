@@ -1,0 +1,7 @@
+.active__orders {
+  position: fixed;
+  bottom: 2%;
+  left: 2%;
+  display: flex;
+  gap: 5px;
+}

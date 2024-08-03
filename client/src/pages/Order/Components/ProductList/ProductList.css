@@ -1,0 +1,54 @@
+.order__blocks > .compound {
+  position: sticky;
+  top: 5%;
+  display: grid;
+  background: #fff;
+  box-shadow: 0 0 10px #D3D3D3;
+  border-radius: 15px;
+  padding: 15px;
+  gap: 10px;
+  width: 70%;
+  min-width: 300px;
+  max-height: 400px;
+}
+.order__blocks > .compound > .title {
+  text-align: center;
+}
+.order__blocks > .compound >  .product__list {
+  display: grid;
+  width: 100%;
+  max-height: 35vh;
+  overflow-y: auto;
+}
+.order__blocks > .compound >  .product__list > .product {
+  display: grid;
+  gap: 5%;
+  grid-template-columns: 2fr 1fr 1fr;
+  border-radius: 15px;
+  width: 100%;
+}
+.order__blocks > .compound >  .product__list > .product > .title {
+  font-size: 16px;
+}
+.order__blocks > .compound >  .product__list > .product > .quantity {
+  font-size: 14px;
+  text-align: right;
+}
+.order__blocks > .compound >  .product__list > .product > .price {
+  font-size: 14px;
+  text-align: right;
+}
+.order__blocks > .compound > .full__price {
+  display: grid;
+  align-items: end;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #D3D3D3;
+  padding-top: 15px;
+}
+.order__blocks > .compound > .full__price > * {
+  font-size: 18px;
+}
+.order__blocks > .compound > .full__price > .price {
+  text-align: right;
+}

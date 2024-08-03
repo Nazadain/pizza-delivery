@@ -1,5 +1,9 @@
 const Courier = () => {
-  return <div>COURIER</div>;
+  return (
+    <>
+      <div className="container">ABOUT</div>
+    </>
+  );
 };
 
 export default Courier;

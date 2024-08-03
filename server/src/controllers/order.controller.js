@@ -30,7 +30,7 @@ class OrderController {
   async getOrderById(req, res) {
     try {
       const order = await OrderService.getOrderById(req.params.id);
-      return order;
+      res.json(order);
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Create order by ID error" });

@@ -23,13 +23,14 @@ CREATE TABLE "types" (
 CREATE TABLE "orders" (
   "id" varchar(100) PRIMARY KEY,
   "date" date NOT NULL DEFAULT CURRENT_DATE,
-  "time" time NOT NULL DEFAULT CURRENT_TIME,
+  "time" timestamp NOT NULL DEFAULT CURRENT_TIME,
   "comment" text,
   "street" varchar(255) NOT NULL,
   "house_num" integer NOT NULL,
   "apartment_num" integer NOT NULL,
   "phone" varchar(11) NOT NULL,
   "customer_name" varchar(100) NOT NULL,
+  "price" integer NOT NULL,
   "status_id" integer NOT NULL,
   "courier_id" varchar(100),
   "user_id" varchar(100) NOT NULL

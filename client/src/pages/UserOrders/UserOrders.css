@@ -1,15 +1,46 @@
-.orders__container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.container {
   gap: 10px;
+  margin: 20px 0;
+}
+.container > .orders__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 60%;
   margin: 25px 0;
 }
-.container > .orders__container > .order {
+.container > .orders__container > .table__header {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 100px repeat(3, 1fr);
+  font-size: 18px;
+  padding: 5px 10px;
+  gap: 10px;
+}
+.container > .orders__container > .order__items {
   display: flex;
-  flex-direction: column;
-  padding: 10px 20px;
-  min-width: 250px;
-  box-shadow: 0 0 10px #D3D3D3;
-  border-radius: 15px;
+  flex-direction: column-reverse;
+}
+.container > .orders__container > .order__items > .item {
+  display: grid;
+  grid-template-columns: 100px repeat(3, 1fr);
   cursor: pointer;
+  border-top: 1px solid #D3D3D3;
+  padding: 10px 10px;
+  gap: 10px;
+  transition: 0.15s;
+}
+.container > .orders__container > .order__items > .item:hover {
+  background: #F3F3F7;
+}
+.container > .link {
+  background: #F77F00;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 15px;
+  transition: 0.15s;
+}
+.container > .link:hover {
+  filter: brightness(0.95);
 }

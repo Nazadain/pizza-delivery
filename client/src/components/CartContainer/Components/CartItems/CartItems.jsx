@@ -8,7 +8,7 @@ const CartItems = memo(({ ...props }) => {
 
   const deleteProduct = (e) => {
     const target = e.target.closest(".cart__item");
-    const id = target.getAttribute("data-id");
+    const id = target.getAttribute("id");
 
     const newCartProducts = cartProducts.filter((product) => product.id !== id);
 
@@ -19,7 +19,7 @@ const CartItems = memo(({ ...props }) => {
   return (
     <div className="cart__items--container">
       {cartProducts.map((p) => (
-        <div key={p.id} className="cart__item" data-id={p.id}>
+        <div key={p.id} className="cart__item" id={p.id}>
           <div className="img">
             <img src={`${process.env.REACT_APP_API_URL}/${p.img}`} />
           </div>
